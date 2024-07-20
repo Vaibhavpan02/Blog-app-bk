@@ -2,29 +2,32 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 
-//components
+// Components
 import connect from "./database/connect.js";
 import userRouter from "./routes/user-routes.js";
 import postRouter from "./routes/post-routes.js";
 
-//Initialization
+// Initialization
 const app = express();
 dotenv.config();
+
 app.use(cors({
-  origin: 'https://blog-app-ft.onrender.com', // Or specify a specific origin like 'http://example.com'
+  origin: 'https://blog-app-ft.onrender.com', // Correct origin without trailing slash
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
+
 app.use(express.json({ limit: '10mb' }));
 
 // Middleware to parse JSON data
 app.use(express.json());
 
-//connection
+// Connection
 connect(process.env.MONGODB_URI || "");
 
+// Health check route
 app.get("/", (req, res) => {
-  res.status(403).send("Forbidden");
+  res.status(200).send("API is running.");
 });
 
 app.use("/api/user", userRouter);
