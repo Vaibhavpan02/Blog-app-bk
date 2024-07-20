@@ -11,7 +11,7 @@ import postRouter from "./routes/post-routes.js";
 const app = express();
 dotenv.config();
 app.use(cors({
-  origin: 'https://blog-app-ft.onrender.com/', // Or specify a specific origin like 'http://example.com'
+  origin: 'https://blog-app-ft.onrender.com', // Or specify a specific origin like 'http://example.com'
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
